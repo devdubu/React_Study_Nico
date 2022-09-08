@@ -11,60 +11,11 @@
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 99;
-
-    function MinutesToHours(){
-        //label 태그 for라는 속성과 id가 같다면 그 id를 소유한 태그가 연결 된다.
-        //하지만 JSX 에서는 for은 이미 예약어 이므로 html 에서 사용 된 for을 사용하기 위해서는 htmlFor을 작성해야한다.
-        const [amount, setAmount] = React.useState(0);
-        const [inverted, setInverted] = React.useState(false);
-        const onChange = (event)=>{
-            console.log("someboduy wrote");
-            console.log(event.target.value);
-            setAmount(event.target.value);
-            //ReactJS는 가짜 event를 만든다 그렇다 보니 value를 찾기 위해서는 조금의 고난이 필요하다.
-            //value의 해당 위 치가 event.target.value일 뿐 더 이상의 역할을 하진 않는다.
-        }
-        const reset = () => setAmount(0);
-        const onFlip = () => {
-            reset();
-            setInverted((current) => !current);
-        }
-        return (
-        <div>
-            <label htmlFor="amount" >amount</label>
-            <input value={inverted ? amount*60 : amount} onChange={onChange} id="amount" placeholder="amount" type="number" disabled={inverted}/>
-            <h4>You want to convert {amount}</h4>
-
-            <label htmlFor="hours">Hours</label>
-            <input value={inverted ? amount : Math.round(amount/60)} id="hours" onChange={onChange} placeholder="Hours" type="number" disabled={!inverted}/>
-            <button onClick={reset}>Reset</button>
-            <button onClick={onFlip}>{inverted ? "Trun back" : "Invert"}</button>
-        </div>
-    )};
-    function KmToMiles(){
-        return(
-            <h3>KM 2 M</h3>
-        );
-    }
     function App(){
-        const [index, setIndex] = React.useState("xx");
-        const onSelect = (event)=>{
-            console.log(event.target.value);
-            setIndex(event.target.value);
-        }
+
         return (
         <div>
-            <h1>Super Converter</h1>
-            <select value={index} onChange={onSelect}>
-                <option value="xx">Select your units</option>
-                <option value="0">Minutes & Hours</option>
-                <option value="1">Km & Miles</option>
-            </select>
-            <hr />
-            {index === "xx" ? "Please select your units":null }
-            {index === "0" ? <MinutesToHours/> : null}
-            {index === "1" ? <KmToMiles/> : null}
+
         </div>
     )};
     ReactDOM.render(<App/>, root);
