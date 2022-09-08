@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.getElementById("root");
+  let counter = 99;
+
+  /*
+  * const food = ["tomato", "potato"];
+  * const myFavFood = food[0];
+  * const mySecondFavFood = food[1];
+  *
+  * -----------------------------------
+  * const [myFavFood, mySecondFavFood] = food
+  *
+  * 위 코드와 아래 코드는 같다. -> 이를 활용해서 useState 문법이 나온 것이다.
+  *
+  * setCounter fun은 우리가 재 랜더링을 해야할 요소들을 자동적으로 재 랜더링을 해준다.
+  * */
+
+  function App(){
+    const [counter, setCounter] = React.useState(0);
+    const onClick = () =>{
+      // setCounter(counter+1);
+      setCounter((current)=> current + 1)
+      //예전의 값을 바탕으로 현재의 값을 추론할 때
+      //위 처럼 현재의 변수를 통해 하는 방법도 있지만, 아래의 방법이 더 안전하다고 평가됨
+      //current라고 했을 때, React는 current가 현재의 값이라고 보장한다.
+    }
+
+    return (
+            <div>
+              <h3>Total clicks: {counter}</h3>
+              <button onClick={onClick}>Click me</button>
+            </div>
+    )};
+  ReactDOM.render(<App/>, root);
+
+</script>
+</html>
+
