@@ -8,16 +8,37 @@
 </body>
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js" crossorigin></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script type="text/babel">
-    const root = document.getElementById("root");
-    function App(){
+    function Btn({text, changeValue, fontSize=12}){
 
+        //props는 첫번째이자 마지막 매개변수이다. props는 오브젝트 타입이다.
+        //(props) 도 가능하지만 ({banana})를 하게 된다면 바로 banana를 사용할 수 있다.
+        return <button
+            onClick={changeValue}
+            style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+                fontSize
+        }}>{ text }</button>;
+    }
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,//isRequired는 꼭 필요한 속성을 뜻한다. 즉, 무조건 작성해주어야하는 props이다.
+        fontSize: PropTypes.number.isRequired,
+    };
+    function App(){
+        const [value, setValue ] = React.useState("Save Changes")
+        const changeValue = () => setValue("Revert Change");
         return (
         <div>
-
+            <Btn text={value} changeValue={changeValue} fontSize={18}/>
         </div>
     )};
+    const root = document.getElementById("root");
     ReactDOM.render(<App/>, root);
 
 </script>
